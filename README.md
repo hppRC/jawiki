@@ -1,4 +1,4 @@
-# wikipedia-ja
+# JaWiki
 
 ```
 mkdir -p data/jawiki
