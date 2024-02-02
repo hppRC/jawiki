@@ -15,7 +15,7 @@ paths = [path for _, path in sorted(paths, key=lambda x: x[0])]
 
 
 def process(example: dict):
-    abstract = example.get("abstract", "")
+    abstract = example.get("abstract")
     templates: list[str] = [t["name"] for t in example.get("templates", [])]
 
     is_disambiguation_page = any("Template:Dmbox" in template for template in templates) or any(
@@ -118,11 +118,10 @@ dataset = dataset.sort("identifier")
 dataset = dataset.select_columns(
     [
         "identifier",
-        "url",
         "title",
         "text",
-        "abstract",
         "paragraphs",
+        "abstract",
         "wikitext",
         "date_created",
         "date_modified",
@@ -130,8 +129,10 @@ dataset = dataset.select_columns(
         "is_sexual_page",
         "is_violent_page",
         "templates",
+        "url",
     ]
 )
+dataset = dataset.rename_column("identifier", "id")
 
 dataset.push_to_hub("hpprc/jawiki", max_shard_size="1GB")
 

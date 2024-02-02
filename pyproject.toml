@@ -1,5 +1,5 @@
 [project]
-name = "wikipedia-ja"
+name = "jawiki"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
